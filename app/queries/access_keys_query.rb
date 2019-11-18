@@ -1,7 +1,6 @@
-class AccessKeysQuery < Queryko::QueryObject
-  add_range_attributes :updated_at, :created_at
-
-  def initialize(params = {}, relation = AccessKey.all)
-    super(params, relation)
-  end
+class AccessKeysQuery < Queryko::Base
+  feature :created_at, :min
+  feature :created_at, :max
+  feature :updated_at, :min
+  feature :updated_at, :max
 end

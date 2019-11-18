@@ -1,9 +1,11 @@
-class CategoriesQuery < Queryko::QueryObject
-  add_range_attributes :updated_at, :created_at
-  add_range_attributes :id
-  add_searchables :name
-  # table_name 'categories'
-  def initialize(params = {}, relation = Category.all)
-    super(params, relation)
-  end
+class CategoriesQuery < Queryko::Base
+  feature :created_at, :min
+  feature :created_at, :max
+  feature :updated_at, :min
+  feature :updated_at, :max
+
+  feature :id, :min
+  feature :id, :max
+
+  feature :name, :search, as: :name
 end

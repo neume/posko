@@ -1,9 +1,11 @@
-class OptionValuesQuery < Queryko::QueryObject
-  add_range_attributes :updated_at, :created_at
-  add_range_attributes :id
-  add_searchables :name
+class OptionValuesQuery < Queryko::Base
+  feature :created_at, :min
+  feature :created_at, :max
+  feature :updated_at, :min
+  feature :updated_at, :max
 
-  def initialize(params = {}, relation = OptionValue.all)
-    super(params, relation)
-  end
+  feature :id, :min
+  feature :id, :max
+
+  feature :name, :search, as: :name
 end
