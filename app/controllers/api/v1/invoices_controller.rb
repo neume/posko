@@ -1,12 +1,12 @@
 class Api::V1::InvoicesController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @invoices = InvoicesQuery.new(params, current_account.invoices).call
+    @invoices = InvoicesQuery.new(query_params, current_account.invoices).call
     render json: { invoices: @invoices }
   end
 
   def count
-    @invoices = InvoicesQuery.new(params, current_account.invoices).call
+    @invoices = InvoicesQuery.new(query_params, current_account.invoices).call
     render json: { count: @invoices.count }
   end
 

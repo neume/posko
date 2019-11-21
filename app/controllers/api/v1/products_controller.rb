@@ -1,11 +1,11 @@
 class Api::V1::ProductsController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @products = ProductsQuery.new(params, Product.all).call
+    @products = ProductsQuery.new(query_params, Product.all).call
   end
 
   def count
-    @products = ProductsQuery.new(params, Product.all).call
+    @products = ProductsQuery.new(query_params, Product.all).call
     render json: { count: @products.count }
   end
 

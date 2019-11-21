@@ -1,12 +1,12 @@
 class VariantsController < ApplicationController
   def index
     @variants = source_parent.variants.active_status
-    render json: blueprint(VariantsQuery.new(params, @variants).call)
+    render json: blueprint(VariantsQuery.new(query_params, @variants).call)
   end
 
   def count
     @variants = source_parent.variants.active_status
-    render json: { count: VariantsQuery.new(params, @variants).total_count }
+    render json: { count: VariantsQuery.new(query_params, @variants).total_count }
   end
 
   def create

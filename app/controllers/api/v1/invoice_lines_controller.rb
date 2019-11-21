@@ -1,7 +1,7 @@
 class Api::V1::InvoiceLinesController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @invoice_lines = InvoiceLinesQuery.new(params, invoice.invoice_lines).call
+    @invoice_lines = InvoiceLinesQuery.new(query_params, invoice.invoice_lines).call
     render json: { invoice_lines: @invoice_lines }
   end
 

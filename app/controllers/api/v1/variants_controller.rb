@@ -25,9 +25,9 @@ class Api::V1::VariantsController < Api::V1::ApiController
 
   def variants
     if params[:product_id]
-      VariantsQuery.new(params, product.variants).call
+      VariantsQuery.new(query_params, product.variants).call
     else
-      VariantsQuery.new(params, current_account.variants).call
+      VariantsQuery.new(query_params, current_account.variants).call
     end
   end
 

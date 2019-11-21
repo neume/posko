@@ -1,14 +1,14 @@
 class ProductsController < ApplicationController
   def index
     @products = current_account.products.active_status
-    render json: blueprint(ProductsQuery.new(params, @products).call)
+    render json: blueprint(ProductsQuery.new(query_params, @products).call)
     # TODO: Implement CSV
     # format.csv { csv_format }
   end
 
   def count
     @products = current_account.products.active_status
-    render json: { count: ProductsQuery.new(params, @products).total_count }
+    render json: { count: ProductsQuery.new(query_params, @products).total_count }
   end
 
   def create

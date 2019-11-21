@@ -22,6 +22,9 @@ RSpec.describe CategoriesQuery, type: :query do
     end
 
     it 'filters query with params' do
+      puts query.fields.keys
+      puts '-' * 10
+      puts query.call.class
       expect(query.call.count).to eq(1)
     end
   end
@@ -96,12 +99,6 @@ RSpec.describe CategoriesQuery, type: :query do
       q = described_class.new({ created_at_max: category1.created_at + 1 },
                               account.categories)
       expect(q.call.count).to eq(2)
-    end
-  end
-
-  describe '#add_range_attributes' do
-    it 'adds created_at' do
-      expect(described_class.range_attributes.count).to eq(3)
     end
   end
 end

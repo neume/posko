@@ -1,12 +1,12 @@
 class Api::V1::OptionTypesController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @option_types = OptionTypesQuery.new(params, product.option_types).call
+    @option_types = OptionTypesQuery.new(query_params, product.option_types).call
     render json: { option_types: @option_types }
   end
 
   def count
-    @option_types = OptionTypesQuery.new(params, product.option_types).call
+    @option_types = OptionTypesQuery.new(query_params, product.option_types).call
     render json: { count: @option_types.count }
   end
 

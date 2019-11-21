@@ -113,7 +113,7 @@ gem 'kaminari'
 # gem 'carrierwave', '~> 1.0'
 # gem "cocoon"
 
-gem 'queryko', '1.1.2'
+gem 'queryko', path: '/Users/joseph/neume/queryko' #, '2.0.8'
 
 # used for demo
 gem 'faker'
@@ -132,3 +132,4 @@ gem 'sentry-raven'
 gem 'blueprinter'
 
 gem 'rack-cors'
+gem 'json', '2.1.0'

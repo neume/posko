@@ -1,7 +1,7 @@
 class BranchesController < ApplicationController
   def index
     @branches = current_account.branches
-    render json: blueprint(BranchesQuery.new(params, @branches).call)
+    render json: blueprint(BranchesQuery.new(query_params, @branches).call)
   end
 
   def create

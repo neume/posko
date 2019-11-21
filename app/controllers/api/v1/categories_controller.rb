@@ -1,12 +1,12 @@
 class Api::V1::CategoriesController < Api::V1::ApiController
   before_action :authenticate_user
   def index
-    @categories = CategoriesQuery.new(params, current_account.categories).call
+    @categories = CategoriesQuery.new(query_params, current_account.categories).call
     render json: { categories: @categories }
   end
 
   def count
-    @categories = CategoriesQuery.new(params, current_account.categories).call
+    @categories = CategoriesQuery.new(query_params, current_account.categories).call
     render json: { count: @categories.count }
   end
 
