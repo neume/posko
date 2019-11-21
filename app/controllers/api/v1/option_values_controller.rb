@@ -2,7 +2,7 @@ class Api::V1::OptionValuesController < Api::V1::ApiController
   before_action :authenticate_user
   def index
     @option_values = OptionValuesQuery.new(
-      params,
+      query_params,
       option_type.option_values
     ).call
     render json: { option_values: @option_values }
@@ -10,7 +10,7 @@ class Api::V1::OptionValuesController < Api::V1::ApiController
 
   def count
     @option_values = OptionValuesQuery.new(
-      params,
+      query_params,
       option_type.option_values
     ).call
     render json: { count: @option_values.count }

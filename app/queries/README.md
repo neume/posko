@@ -16,16 +16,16 @@ For more information check [Queryko](https://github.com/neume/queryko) gem.
 
 Procedure:
 
-- Create a class with `Queryko::Base` as base class.
+- Create a class with `QueryObject` as base class.
 ``` ruby
-  class ProductsQuery < Queryko::Base
+  class ProductsQuery < QueryObject
   end
 ```
 - Add query filters.
   - `feature :attribute` filters query with `:min` and `:max`
   - `feature :attribute, :search, as: :attribute` filters query by `:attribute` if the attribute is supplied
 ```ruby
-  class ProductsQuery < Queryko::Base
+  class ProductsQuery < QueryObject
     feature :created_at, :min
     feature :created_at, :max
     feature :price, :min

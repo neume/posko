@@ -32,18 +32,6 @@ RSpec.describe Api::V1::ProductsController, type: :request do
       end
     end
 
-    context 'when using page and limit' do
-      it 'returns products from page 1' do
-        get '/api/v1/products', params: { limit: 2, page: 1 }, headers: headers
-        expect(json['products'].count).to eq(2)
-      end
-
-      it 'returns products from page 2' do
-        get '/api/v1/products', params: { limit: 2, page: 2 }, headers: headers
-        expect(json['products'].count).to eq(1)
-      end
-    end
-
     context 'when using since_id' do
       it 'returns list of products' do
         get '/api/v1/products',
