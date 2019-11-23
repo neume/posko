@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SessionsController, type: :controller do
+RSpec.describe SessionsController, type: :request do
   let(:account) { create(:account, name: 'firstcompany') }
   let(:user) do
     create(:user, email: 'admin@firstcompany.com', password: 'password',
@@ -10,7 +10,7 @@ RSpec.describe SessionsController, type: :controller do
   describe 'GET #create' do
     before do
       user
-      post :create, params: {
+      post '/sign_in', params: {
         account_name: 'firstcompany',
         email: 'admin@firstcompany.com',
         password: password
@@ -34,7 +34,7 @@ RSpec.describe SessionsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'signs out user using delete' do
-      delete :destroy
+      delete '/sign_out'
       expect(response).to have_http_status(:success)
       expect(json).to include_json(message: 'Successfully signed out')
     end

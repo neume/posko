@@ -3,6 +3,7 @@ class ApplicationController < ActionController::API
   before_action :check_session
   before_action :set_raven_context
   helper_method :current_user, :current_account
+
   rescue_from ActiveRecord::RecordNotFound do
     render status: 404, json: {
       error: {
@@ -13,7 +14,7 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    @current_user ||= User.find_by(id: request.headers["X-Posko-User-Token"] )
   end
 
   def current_account
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::API
   end
 
   def set_raven_context
-    Raven.user_context(id: session[:user_id]) # or anything else in session
+    Raven.user_context(id: current_user.try(:id)) # or anything else in session
     Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 

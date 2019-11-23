@@ -38,3 +38,5 @@ config/deploy/*
 sandbox
 manual
 .rbenv-vars
+
+api_docs/output.html
